@@ -176,6 +176,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    fio_free_DataRead(data);
     printf("%d\n", sum);
 
     return EXIT_SUCCESS;
