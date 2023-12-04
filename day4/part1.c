@@ -78,7 +78,6 @@ int count_wining_numbers(char *line, int skip) {
         cur += 3;
     }
 
-    printf("Count: %d\n", count);
     if (count == 0) return 0;
     else return 1 << (count - 1);
 }
@@ -115,13 +114,11 @@ int main(int argc, char *argv[]) {
         skip += 2;
 
         sum += count_wining_numbers(line, skip);
-        printf("Points: %d\n\n", sum);
     }
 
     int points;
     while ((characters_read = getline(&line, &len, f)) != -1) {
         points = count_wining_numbers(line, skip);
-        printf("Points: %d\n\n", points);
         sum += points;
     }
 
