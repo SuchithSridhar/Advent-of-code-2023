@@ -18,9 +18,6 @@ for line in data:
 
     count = len(set(winners).intersection(set(yours)))
     points = 0 if count == 0 else 2**(count - 1)
-    print("Count:", count)
-    print("Points:", points)
-    print("")
     total += points
 
 print(total)
