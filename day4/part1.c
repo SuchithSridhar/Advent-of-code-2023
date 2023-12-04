@@ -1,10 +1,9 @@
+#include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#include <sys/types.h>
 
-#define WINNING_NUMS 5
 #define MAX_NUM 100
 
 typedef struct {
@@ -24,7 +23,6 @@ unsigned char str2int(const char* str, int len) {
     }
     return ret;
 }
-
 
 static void hashmap_set(unsigned char num) {
     int64_t x = 1;
@@ -61,7 +59,7 @@ int count_wining_numbers(char *line, int skip) {
     HASHMAP.b = 0;
     unsigned char num;
 
-    for (size_t i = 0; i < WINNING_NUMS; i++) {
+    while (*cur != '|') {
         num = str2int(cur, 2);
         hashmap_set(num);
         cur += 3;
@@ -74,16 +72,15 @@ int count_wining_numbers(char *line, int skip) {
     while (*cur != '\n' && *cur != '\0') {
         num = str2int(cur, 2);
         if (hashmap_in(num)) {
-            printf("%d in hash\n", num);
             count++;
         }
 
         cur += 3;
     }
 
-    printf("\n\n");
-
-    return count;
+    printf("Count: %d\n", count);
+    if (count == 0) return 0;
+    else return 1 << (count - 1);
 }
 
 int main(int argc, char *argv[]) {
@@ -118,10 +115,14 @@ int main(int argc, char *argv[]) {
         skip += 2;
 
         sum += count_wining_numbers(line, skip);
+        printf("Points: %d\n\n", sum);
     }
 
+    int points;
     while ((characters_read = getline(&line, &len, f)) != -1) {
-        sum += count_wining_numbers(line, skip);
+        points = count_wining_numbers(line, skip);
+        printf("Points: %d\n\n", points);
+        sum += points;
     }
 
     printf("%d\n", sum);

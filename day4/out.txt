@@ -1,0 +1,658 @@
+Count: 5
+Points: 16
+
+Count: 8
+Points: 128
+
+Count: 5
+Points: 16
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 8
+Points: 128
+
+Count: 9
+Points: 256
+
+Count: 7
+Points: 64
+
+Count: 7
+Points: 64
+
+Count: 1
+Points: 1
+
+Count: 8
+Points: 128
+
+Count: 4
+Points: 8
+
+Count: 3
+Points: 4
+
+Count: 2
+Points: 2
+
+Count: 2
+Points: 2
+
+Count: 1
+Points: 1
+
+Count: 2
+Points: 2
+
+Count: 0
+Points: 0
+
+Count: 1
+Points: 1
+
+Count: 0
+Points: 0
+
+Count: 10
+Points: 512
+
+Count: 7
+Points: 64
+
+Count: 8
+Points: 128
+
+Count: 9
+Points: 256
+
+Count: 5
+Points: 16
+
+Count: 6
+Points: 32
+
+Count: 6
+Points: 32
+
+Count: 7
+Points: 64
+
+Count: 3
+Points: 4
+
+Count: 2
+Points: 2
+
+Count: 5
+Points: 16
+
+Count: 0
+Points: 0
+
+Count: 9
+Points: 256
+
+Count: 4
+Points: 8
+
+Count: 2
+Points: 2
+
+Count: 0
+Points: 0
+
+Count: 5
+Points: 16
+
+Count: 4
+Points: 8
+
+Count: 0
+Points: 0
+
+Count: 1
+Points: 1
+
+Count: 1
+Points: 1
+
+Count: 0
+Points: 0
+
+Count: 10
+Points: 512
+
+Count: 8
+Points: 128
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 4
+Points: 8
+
+Count: 8
+Points: 128
+
+Count: 10
+Points: 512
+
+Count: 9
+Points: 256
+
+Count: 8
+Points: 128
+
+Count: 9
+Points: 256
+
+Count: 10
+Points: 512
+
+Count: 5
+Points: 16
+
+Count: 0
+Points: 0
+
+Count: 4
+Points: 8
+
+Count: 6
+Points: 32
+
+Count: 2
+Points: 2
+
+Count: 4
+Points: 8
+
+Count: 2
+Points: 2
+
+Count: 2
+Points: 2
+
+Count: 2
+Points: 2
+
+Count: 0
+Points: 0
+
+Count: 3
+Points: 4
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 2
+Points: 2
+
+Count: 5
+Points: 16
+
+Count: 5
+Points: 16
+
+Count: 0
+Points: 0
+
+Count: 10
+Points: 512
+
+Count: 5
+Points: 16
+
+Count: 10
+Points: 512
+
+Count: 9
+Points: 256
+
+Count: 6
+Points: 32
+
+Count: 9
+Points: 256
+
+Count: 5
+Points: 16
+
+Count: 8
+Points: 128
+
+Count: 5
+Points: 16
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 2
+Points: 2
+
+Count: 2
+Points: 2
+
+Count: 2
+Points: 2
+
+Count: 1
+Points: 1
+
+Count: 0
+Points: 0
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 9
+Points: 256
+
+Count: 6
+Points: 32
+
+Count: 10
+Points: 512
+
+Count: 3
+Points: 4
+
+Count: 3
+Points: 4
+
+Count: 2
+Points: 2
+
+Count: 1
+Points: 1
+
+Count: 2
+Points: 2
+
+Count: 0
+Points: 0
+
+Count: 3
+Points: 4
+
+Count: 2
+Points: 2
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 6
+Points: 32
+
+Count: 10
+Points: 512
+
+Count: 9
+Points: 256
+
+Count: 7
+Points: 64
+
+Count: 1
+Points: 1
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 9
+Points: 256
+
+Count: 9
+Points: 256
+
+Count: 0
+Points: 0
+
+Count: 3
+Points: 4
+
+Count: 5
+Points: 16
+
+Count: 4
+Points: 8
+
+Count: 0
+Points: 0
+
+Count: 5
+Points: 16
+
+Count: 1
+Points: 1
+
+Count: 2
+Points: 2
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 2
+Points: 2
+
+Count: 1
+Points: 1
+
+Count: 0
+Points: 0
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 3
+Points: 4
+
+Count: 1
+Points: 1
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 7
+Points: 64
+
+Count: 2
+Points: 2
+
+Count: 9
+Points: 256
+
+Count: 9
+Points: 256
+
+Count: 2
+Points: 2
+
+Count: 5
+Points: 16
+
+Count: 7
+Points: 64
+
+Count: 0
+Points: 0
+
+Count: 5
+Points: 16
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 1
+Points: 1
+
+Count: 2
+Points: 2
+
+Count: 6
+Points: 32
+
+Count: 3
+Points: 4
+
+Count: 1
+Points: 1
+
+Count: 6
+Points: 32
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 7
+Points: 64
+
+Count: 10
+Points: 512
+
+Count: 1
+Points: 1
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 2
+Points: 2
+
+Count: 4
+Points: 8
+
+Count: 1
+Points: 1
+
+Count: 7
+Points: 64
+
+Count: 4
+Points: 8
+
+Count: 3
+Points: 4
+
+Count: 0
+Points: 0
+
+Count: 4
+Points: 8
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 10
+Points: 512
+
+Count: 0
+Points: 0
+
+Count: 1
+Points: 1
+
+Count: 10
+Points: 512
+
+Count: 4
+Points: 8
+
+Count: 3
+Points: 4
+
+Count: 8
+Points: 128
+
+Count: 4
+Points: 8
+
+Count: 6
+Points: 32
+
+Count: 0
+Points: 0
+
+Count: 1
+Points: 1
+
+Count: 4
+Points: 8
+
+Count: 6
+Points: 32
+
+Count: 2
+Points: 2
+
+Count: 1
+Points: 1
+
+Count: 3
+Points: 4
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 0
+Points: 0
+
+Count: 10
+Points: 512
+
+Count: 9
+Points: 256
+
+Count: 4
+Points: 8
+
+Count: 5
+Points: 16
+
+Count: 8
+Points: 128
+
+Count: 10
+Points: 512
+
+Count: 7
+Points: 64
+
+Count: 7
+Points: 64
+
+Count: 3
+Points: 4
+
+Count: 0
+Points: 0
+
+Count: 7
+Points: 64
+
+Count: 1
+Points: 1
+
+Count: 5
+Points: 16
+
+Count: 2
+Points: 2
+
+Count: 1
+Points: 1
+
+Count: 1
+Points: 1
+
+Count: 0
+Points: 0
+
+Count: 1
+Points: 1
+
+Count: 0
+Points: 0
+
+26426
