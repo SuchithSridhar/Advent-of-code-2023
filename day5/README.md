@@ -12,7 +12,7 @@ vast ranges of seeds, and the task is to track all of them effectively.
 
 My initial approach was somewhat naive. I thought I could simply convert these
 broad ranges into individual seeds and apply the same strategy I used for Part
-\1. With a bit of overconfidence, I coded this solution and set it running. But
+1. With a bit of overconfidence, I coded this solution and set it running. But
 soon, I sensed trouble. My computer began to struggle, and it didn't take long
 for my concerns to be validated. In less than five seconds, my machine had
 exhausted its 16 GB of RAM, and to make matters worse, it started eating into
