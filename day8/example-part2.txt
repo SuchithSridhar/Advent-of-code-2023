@@ -1,0 +1,10 @@
+LR
+
+KKA = (KKB, XXX)
+KKB = (XXX, KKZ)
+KKZ = (KKB, XXX)
+HHA = (HHB, XXX)
+HHB = (HHC, HHC)
+HHC = (HHZ, HHZ)
+HHZ = (HHB, HHB)
+XXX = (XXX, XXX)
