@@ -5,12 +5,21 @@
 #include "include/fileio.h"
 #include "graph.h"
 
+int graph_uuid_from_name(name_t name) {
+    return (
+        SYMBOL_COUNT * SYMBOL_COUNT * (name[0] - SYMBOL_OFFSET) + 
+        SYMBOL_COUNT * (name[1] - SYMBOL_OFFSET) +
+        (name[2] - SYMBOL_OFFSET)
+    );
+}
+
 void print_graph_node(graph_node_t *node) {
     if (node == NULL) {
         return;
     }
-    printf("%c%c%c :: (%c%c%c, %c%c%c)",
+    printf("%c%c%c [%d] :: (%c%c%c, %c%c%c)",
             node->name[0], node->name[1], node->name[2],
+            node->uuid,
             node->left->name[0], node->left->name[1], node->left->name[2],
             node->right->name[0], node->right->name[1], node->right->name[2]
     );
@@ -82,7 +91,28 @@ void hash_set_children(hash_node_t *map, name_t root_name, name_t left_name,
     root->right = right;
 }
 
-hashmap_t* graph_build(fio_DataRead *data) {
+void hashmap_free_without_graph(hashmap_t *hashmap) {
+    for (int i = 0; i < hashmap->length; ++i) {
+        hash_node_t *current = &hashmap->map[i];
+        hash_node_t *previous;
+
+        if (current == NULL || current->node == NULL || current->next == NULL)
+            continue;
+
+        current = current->next;
+
+        while (current != NULL) {
+            previous = current;
+            current = current->next;
+            free(previous);
+        }
+    }
+
+    free(hashmap->map);
+    free(hashmap);
+}
+
+graph_node_t* graph_build(fio_DataRead *data) {
     // line w/ index 0 contains contains Ls and Rs 
     // line w/ index 1 is empty
     
@@ -98,6 +128,9 @@ hashmap_t* graph_build(fio_DataRead *data) {
     container->length = hashmap_count;
 
     graph_node_t *node;
+    graph_node_t *start = NULL;
+    name_t start_name = {'A', 'A', 'A'};
+    int start_uuid = graph_uuid_from_name(start_name);
 
     // Set up all the graphs
     for (int i = 0; i < node_count; i++) {
@@ -106,6 +139,11 @@ hashmap_t* graph_build(fio_DataRead *data) {
         node->name[0] = data->lines[i+2][0];
         node->name[1] = data->lines[i+2][1];
         node->name[2] = data->lines[i+2][2];
+        node->uuid = graph_uuid_from_name(node->name);
+
+        if (start == NULL && node->uuid == start_uuid) {
+            start = node;
+        }
 
         hash_insert(hashmap, node);
     }
@@ -132,9 +170,38 @@ hashmap_t* graph_build(fio_DataRead *data) {
         hash_set_children(hashmap, node_name, left_name, right_name);
     }
 
-    return container;
+
+    /*
+     * Since the left and right children are set, we can free
+     * all the hashmap nodes.
+     */
+    hashmap_free_without_graph(container);
+
+    return start;
 }
 
+int graph_find_zzz(graph_node_t *a_node, char *lrline, int length) {
+    graph_node_t *current = a_node;
+    int index = 0;
+    name_t zzz_name = {'Z', 'Z', 'Z'};
+    int zzz_uuid = graph_uuid_from_name(zzz_name);
+
+    while (current->uuid != zzz_uuid) {
+        switch (lrline[index % length]) {
+            case 'L':
+                current = current->left;
+                break;
+            case 'R':
+                current = current->right;
+                break;
+            default:
+                break;
+        }
+        index++;
+    }
+
+    return index;
+}
 
 int main(int argc, char *argv[]) {
 
@@ -152,8 +219,12 @@ int main(int argc, char *argv[]) {
 
     fio_DataRead *fio_data = fio_read_lines(f);
 
-    hashmap_t *hashmap = graph_build(fio_data);
-    print_hashmap(hashmap);
+    // build the graph and get node for AAA
+    graph_node_t *a_node = graph_build(fio_data);
+
+    int count = graph_find_zzz(a_node, fio_data->lines[0],
+                               fio_data->str_lens[0]);
+    printf("%d\n", count);
 
     fclose(f);
     fio_free_DataRead(fio_data);

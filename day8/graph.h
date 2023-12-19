@@ -12,6 +12,7 @@ typedef char name_t[NAME_LENGTH];
 typedef struct graph_node {
     struct graph_node *left;
     struct graph_node *right;
+    int uuid;
     name_t name;
 } graph_node_t;
 
