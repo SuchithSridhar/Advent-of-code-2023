@@ -31,6 +31,11 @@ typedef struct {
     int col;
 } pos_t;
 
+struct area_count {
+    int area;
+    int count;
+};
+
 
 /**
  * Find the next position on the map given
@@ -191,10 +196,11 @@ pos_t replace_start(fio_DataRead *map) {
     return start;
 }
 
-int traverse_and_replace_loop(fio_DataRead *map, pos_t start) {
+struct area_count traverse_find_area(fio_DataRead *map, pos_t start) {
     pos_t current;
     pos_t previous;
     int steps;
+    int area;
     char map_item;
 
     current.row = -1;
@@ -231,134 +237,32 @@ int traverse_and_replace_loop(fio_DataRead *map, pos_t start) {
      */
 
     steps = 1;
+    area = 0;
     pos_t tmp;
     while (!(current.row == start.row && current.col == start.col)) {
         map_item = map_at(map, current.row, current.col);
         tmp = find_next_position(map_item, &previous, &current);
 
-        /* replace previous */
-        switch(map->lines[previous.row][previous.col]){
-            case PIPE_NORTH_SOUTH:
-                map->lines[previous.row][previous.col] = LOOP_VERT_MARK;
-                break;
-            case PIPE_EAST_WEST:
-                map->lines[previous.row][previous.col] = LOOP_HORZ_MARK;
-                break;
-            default:
-                map->lines[previous.row][previous.col] = LOOP_TURN_MARK;
-                break;
-        }
+        area += (previous.col + current.col) * (previous.row - current.row);
+
         previous = current;
         current = tmp;
         steps++;
     }
 
-    switch(map->lines[previous.row][previous.col]){
-        case PIPE_NORTH_SOUTH:
-            map->lines[previous.row][previous.col] = LOOP_VERT_MARK;
-            break;
-        case PIPE_EAST_WEST:
-            map->lines[previous.row][previous.col] = LOOP_HORZ_MARK;
-            break;
-        default:
-            map->lines[previous.row][previous.col] = LOOP_TURN_MARK;
-            break;
-    }
+    struct area_count a;
+    a.area = area / 2;
+    a.area = a.area < 0 ? -a.area : a.area; // abs area
+    a.count = steps;
 
-    return steps;
+    return a;
 }
 
-void update_neighbor_squares(fio_DataRead *map, int row, int col, char mark) {
-
-    if (row < 0 || col < 0) return;
-    if (row >= map->length) return;
-
-    if (col >= map->str_lens[row]) return;
-
-    if (map->lines[row][col] == LOOP_VERT_MARK) return;
-    if (map->lines[row][col] == LOOP_TURN_MARK) return;
-    if (map->lines[row][col] == LOOP_HORZ_MARK) return;
-    if (map->lines[row][col] == INSIDE_MARK) return;
-    if (map->lines[row][col] == OUTSIDE_MARK) return;
-    map->lines[row][col] = mark;
-
-    update_neighbor_squares(map, row - 1, col, mark);
-    update_neighbor_squares(map, row + 1, col, mark);
-    update_neighbor_squares(map, row, col - 1, mark);
-    update_neighbor_squares(map, row, col + 1, mark);
-}
-
-bool is_inside_pipes(fio_DataRead *map, int row, int col) {
-
-    if (map->lines[row][col] == INSIDE_MARK) return true;
-    if (map->lines[row][col] == OUTSIDE_MARK) return false;
-    if (map->lines[row][col] == LOOP_VERT_MARK) return false;
-    if (map->lines[row][col] == LOOP_TURN_MARK) return false;
-    if (map->lines[row][col] == LOOP_HORZ_MARK) return false;
-
-    // It's on the edge and it's not a loop
-    if (row == 0 || col == 0 ||
-        row == map->length - 1 || col == map->str_lens[row] - 1) {
-
-        update_neighbor_squares(map, row, col, OUTSIDE_MARK);
-        return false;
-    }
-
-    int north_count = 0;
-    int south_count = 0;
-    int west_count = 0;
-    int east_count = 0;
-
-    char map_item;
-
-    for (int i = row - 1; i >= 0; i--) {
-        map_item = map_at(map, i, col);
-        if (map_item == LOOP_HORZ_MARK || map_item == LOOP_TURN_MARK) north_count++;
-    }
-
-    for (int i = row + 1; i < map->length; i++) {
-        map_item = map_at(map, i, col);
-        if (map_item == LOOP_HORZ_MARK || map_item == LOOP_TURN_MARK) south_count++;
-    }
-
-    for (int i = col - 1; i >= 0; i--) {
-        map_item = map_at(map, row, i);
-        if (map_item == LOOP_VERT_MARK || map_item == LOOP_TURN_MARK) west_count++;
-    }
-
-    for (int i = col + 1; i < map->str_lens[row]; i++) {
-        map_item = map_at(map, row, i);
-        if (map_item == LOOP_VERT_MARK || map_item == LOOP_TURN_MARK) east_count++;
-    }
-
-    if (row == 2 && col == 3) {
-        printf("Original = %c\n", map->lines[row][col]);
-        printf("north_count = %d\n", north_count);
-        printf("south_count = %d\n", south_count);
-        printf("east_count = %d\n", east_count);
-        printf("west_count = %d\n", west_count);
-    }
-
-    if (north_count % 2 == 1 || south_count % 2 == 1 || east_count % 2 == 1 || west_count % 2 == 1) {
-        // This is an inside square.
-        update_neighbor_squares(map, row, col, INSIDE_MARK);
-        return true;
-    } else {
-        update_neighbor_squares(map, row, col, OUTSIDE_MARK);
-        return false;
-    }
-}
-
-int count_inside_squares(fio_DataRead *map) {
-    int count = 0;
-    for (int i = 0; i < map->length; i++) {
-        for (int j = 0; j < map->str_lens[i]; j++) {
-            if (is_inside_pipes(map, i, j)) {
-                count ++;
-            }
-        }
-    }
-    return count;
+int find_points_inside(struct area_count ac) {
+    // i = A - b/2 - h + 1
+    // h assumed to be 0 based on problem (holes)
+    int inside = ac.area - (ac.count / 2) + 1;
+    return inside;
 }
 
 void print_map(fio_DataRead *map) {
@@ -401,13 +305,11 @@ int main(int argc, char *argv[]) {
 
     pos_t start = replace_start(map);
 
-    traverse_and_replace_loop(map, start);
+    struct area_count ac = traverse_find_area(map, start);
 
-    print_map(map);
+    printf("Area: %d && count: %d\n", ac.area, ac.count);
 
-    int count = count_inside_squares(map);
-
-    print_map(map);
+    int count = find_points_inside(ac);
 
     printf("%d\n", count);
 
