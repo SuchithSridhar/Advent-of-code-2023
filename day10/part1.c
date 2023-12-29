@@ -259,6 +259,7 @@ int main(int argc, char *argv[]) {
     printf("%d\n", find_max_distance(map, start));
 
     fio_free_DataRead(map);
+    fclose(f);
 
     return EXIT_SUCCESS;
 }
